@@ -1,0 +1,23 @@
+# ─────────────────────────────────────────────────────────────────────────
+# Le dépôt netfox-agency/demestre est PUBLIC.
+# Ce qui suit reste en local : ce sont des documents d'agence, pas le site.
+# ─────────────────────────────────────────────────────────────────────────
+
+# Données de performance d'AUTRES clients de l'agence (dépenses, conversions,
+# CPA, mots-clés qui marchent). Rien de tout ça ne doit sortir.
+AUDIT-PARC-ADS.md
+
+# Stratégie Google Ads : budgets, enchères, listes de mots-clés et
+# d'exclusions. Un concurrent de David n'a qu'à copier.
+GOOGLE-ADS-STRATEGIE.md
+MOTS-CLES-GOOGLE-ADS.md
+ads-import/
+
+# Notes internes sur le dossier client (objet au RCS, assurance, points
+# bloquants). À ne pas exposer : ça se retourne contre le client.
+README-INTERNE.md
+
+# Divers
+.DS_Store
+*.pyc
+__pycache__/

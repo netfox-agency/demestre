@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<!-- ============================================================
+     Page générée par build.py. NE JAMAIS ÉDITER LES FICHIERS GÉNÉRÉS :
+     éditer templates/page.html (structure) ou build.py (contenu),
+     puis relancer `python3 build.py`.
+     ⚠️ RESTE À FAIRE AVANT LA PREMIÈRE ANNONCE (détail dans README.md)
+     1. DOMAINE   : {{URL_BASE}} acheté, reste à brancher sur Cloudflare Pages
+     2. WEB3FORMS : clé à créer avec l'email de David Demestre
+     3. LÉGAL     : mentions légales + SIRET + décennale (exigés par Google Ads)
+     4. CONVERSIONS : IDs Ads (inactifs tant qu'ils contiennent XXXX)
+     5. AVIS      : coller les vrais avis Google (section #avis masquée)
+     ============================================================ -->
+
+<title>{{TITLE}}</title>
+<meta name="description" content="{{META_DESC}}" />
+<!-- noindex tant que le domaine et les mentions légales ne sont pas en place.
+     Sans effet sur Google Ads : une landing en noindex se diffuse normalement. -->
+<meta name="robots" content="noindex, nofollow" />
+<link rel="canonical" href="{{CANONICAL}}" />
+
+<meta property="og:type" content="website" />
+<meta property="og:locale" content="fr_FR" />
+<meta property="og:title" content="{{OG_TITLE}}" />
+<meta property="og:description" content="{{OG_DESC}}" />
+<meta property="og:url" content="{{CANONICAL}}" />
+<meta property="og:image" content="{{URL_BASE}}/assets/img/{{HERO_IMG}}" />
+<meta name="theme-color" content="#251f19" />
+<meta name="geo.region" content="{{GEO_REGION}}" />
+<meta name="geo.placename" content="{{GEO_PLACENAME}}" />
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml" />
+
+<!-- Polices auto-hébergées dans assets/fonts : zéro requête tierce. -->
+<link rel="stylesheet" href="/assets/styles.css?v=13" />
+
+<!-- Google Ads : gtag + conversions. Inactif tant que les IDs contiennent XXXX. -->
+<script>
+window.ADS_GTAG = '{{ADS_GTAG}}';
+if (window.ADS_GTAG.indexOf('XXXX') === -1) {
+  var s = document.createElement('script'); s.async = true;
+  s.src = 'https://www.googletagmanager.com/gtag/js?id=' + window.ADS_GTAG;
+  document.head.appendChild(s);
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', window.ADS_GTAG);
+}
+window.ADS_CONVERSION = '{{ADS_CONV_DEVIS}}';        /* « Demande de devis (site) » */
+window.ADS_CONVERSION_APPEL = '{{ADS_CONV_APPEL}}';  /* « Appel depuis le site » */
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "RoofingContractor",
+  "@id": "{{CANONICAL}}#business",
+  "name": "{{BRAND}}",
+  "alternateName": "{{BRAND_ALT}}",
+  "url": "{{CANONICAL}}",
+  "telephone": "{{PHONE_TEL}}",
+  "image": "{{URL_BASE}}/assets/img/{{HERO_IMG}}",
+  "priceRange": "€€",
+  "currenciesAccepted": "EUR",
+  "paymentAccepted": "Chèque, Virement, Espèces",
+  "foundingDate": "{{FOUNDING}}",
+  "slogan": "{{SCHEMA_SLOGAN}}",
+  "description": "{{SCHEMA_DESC}}",
+  "address": {{SCHEMA_ADDRESS}},
+  "geo": {{SCHEMA_GEO}},
+  "openingHoursSpecification": [{"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],"opens":"07:30","closes":"18:00"}],
+  "areaServed": {{SCHEMA_AREA}},
+  "hasOfferCatalog": {
+    "@type":"OfferCatalog",
+    "name":"{{SCHEMA_SERVICE_NAME}}",
+    "itemListElement":[{{SCHEMA_OFFERS}}]
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [{{SCHEMA_FAQ}}]
+}
+</script>
+</head>
+<body data-lp="{{LP_ID}}">
+
+<!-- ================= HEADER ================= -->
+<header class="topbar">
+  <div class="wrap topbar-in">
+    <a href="#top" class="brand" aria-label="{{BRAND}}">
+      <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M4 29 24 9l20 20" stroke-width="3.2"/><path d="M24 9V3M21 5.5h6" stroke-width="2.4"/><path d="M11 25h26M15 21h18" stroke-width="2" opacity=".5"/><path d="M9 30v13M39 30v13M9 43h30" stroke-width="2.4"/></svg></span>
+      <span class="brand-txt"><b>{{BRAND_SHORT}}</b><span class="bd">{{BRAND_TAG}}</span></span>
+    </a>
+    <nav class="topnav" aria-label="Sections de la page">
+      <a href="#prestation">Le métier</a>
+      <a href="#resultat">Résultat</a>
+      <a href="#prix">Budget</a>
+      <a href="#faq">Questions</a>
+    </nav>
+    <div class="topbar-cta">
+      <a href="tel:{{PHONE_TEL}}" class="btn btn-ink btn-sm js-tel">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6.5 4h3l1.2 3.5-2 1.3a11 11 0 0 0 4.5 4.5l1.3-2 3.5 1.2v3a2 2 0 0 1-2.2 2A15.5 15.5 0 0 1 4.5 6.2 2 2 0 0 1 6.5 4Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg>
+        {{PHONE_DISPLAY}}
+      </a>
+      <a href="#devis" class="btn btn-accent btn-sm">Devis gratuit</a>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+
+<!-- ================= HERO ================= -->
+<!-- Hero pleine image : la photo occupe tout le cadre,
+     bord à bord, et le texte est posé DANS LE VIDE de l'image (ciel, pan de
+     toit sombre), jamais sur l'artisan. Le dégradé ne monte que du bas et de
+     la gauche : la photo n'est pas assombrie dans son ensemble.
+     Le formulaire n'est plus dans le hero : il a sa propre section, juste
+     dessous, avec les quatre arguments du service en vis-à-vis. -->
+<header class="page-hero" id="top">
+  <img class="hero-bg" src="/assets/img/{{HERO_IMG}}" alt="{{HERO_IMG_ALT}}"
+       srcset="/assets/img/{{HERO_IMG_MOB}} 900w, /assets/img/{{HERO_IMG}} 1920w"
+       sizes="100vw"
+       fetchpriority="high" width="1920" height="1050" />
+  <div class="hero-scrim" aria-hidden="true"></div>
+  <div class="wrap hero-in">
+    <p class="hero-pin">
+      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 21s7-6.3 7-11a7 7 0 1 0-14 0c0 4.7 7 11 7 11Z" stroke="currentColor" stroke-width="1.7"/><circle cx="12" cy="10" r="2.2" stroke="currentColor" stroke-width="1.7"/></svg>
+      {{HERO_KICKER}}
+    </p>
+    <h1>{{H1}}</h1>
+    <p class="lead">{{HERO_SUB}}</p>
+    <div class="hero-cta">
+      <a href="tel:{{PHONE_TEL}}" class="btn btn-cream btn-lg js-tel">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6.5 4h3l1.2 3.5-2 1.3a11 11 0 0 0 4.5 4.5l1.3-2 3.5 1.2v3a2 2 0 0 1-2.2 2A15.5 15.5 0 0 1 4.5 6.2 2 2 0 0 1 6.5 4Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg>
+        {{PHONE_DISPLAY}}
+      </a>
+      <a href="#devis" class="btn btn-glass btn-lg">Demander un devis gratuit</a>
+    </div>
+    <p class="lp-micro">Lun-sam 7 h 30 – 18 h · Réponse le jour même · Visite et devis gratuits, sans acompte.</p>
+  </div>
+</header>
+
+<!-- ================= DEVIS ================= -->
+<section class="section devis-sec" id="devis">
+  <div class="wrap lp-grid">
+    <div class="lp-copy">
+      <p class="crumb">{{CRUMB_ROOT}} <span>&rsaquo;</span> {{CRUMB}}</p>
+      <h2 class="h2">{{OUV_TITRE}}</h2>
+      <p class="lead">{{OUV_TEXTE}}</p>
+      <ul class="lp-points">
+        {{HERO_POINTS}}
+      </ul>
+    </div>
+
+    <aside class="lp-form">
+      <div class="form-card">
+        <div class="form-head">
+          <h2>{{FORM_TITLE}}</h2>
+          <p>{{FORM_HEAD_P}}</p>
+        </div>
+        {{FORMULAIRE_HAUT}}
+      </div>
+    </aside>
+  </div>
+</section>
+
+<!-- ================= LES PREUVES ================= -->
+<!-- Les quatre arguments du service sont remontés dans le hero : ce bandeau
+     porte les quatre preuves de l'entreprise, qui ne changent pas d'une page
+     à l'autre. Aucune des deux listes ne répète l'autre. -->
+<div class="trust">
+  <div class="wrap proofband">
+    {{PROOFS}}
+  </div>
+</div>
+
+<!-- ================= L'ENJEU ================= -->
+<section class="section section-dark" id="pourquoi">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="kick">{{RISK_EYEBROW}}</span>
+      <h2 class="h2">{{RISK_TITLE}}</h2>
+      <p class="lead">{{RISK_LEAD}}</p>
+    </div>
+    <div class="risk-list">
+      {{RISK_ITEMS}}
+    </div>
+    <a href="#devis" class="btn btn-cream btn-lg risk-cta">{{RISK_CTA}}</a>
+  </div>
+</section>
+
+<!-- ================= LA PRESTATION ================= -->
+<section class="section" id="prestation">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="kick">Comment ça se passe</span>
+      <h2 class="h2">{{STEPS_TITLE}}</h2>
+      <p class="lead">{{STEPS_LEAD}}</p>
+    </div>
+    <div class="steps">
+      {{STEPS}}
+    </div>
+    <div class="incl">
+      <p class="incl-title">Compris dans chaque chantier</p>
+      <ul class="incl-list">
+        {{INCL_LIST}}
+      </ul>
+      <p class="incl-note">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3 4 6v6c0 4.5 3.2 7.6 8 9 4.8-1.4 8-4.5 8-9V6l-8-3Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="m9 12 2 2 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span>Travaux réalisés <b>en toute sécurité</b>, avec véhicule nacelle ou échafaudage selon l'accès au chantier.</span>
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= AVANT / APRÈS ================= -->
+<!-- Deux cartes photo légendées : la preuve visuelle du résultat, sans lien
+     sortant. Sur une page d'annonce, chaque lien qui sort est un lead perdu. -->
+<section class="section section-warm" id="resultat">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="kick">Le résultat</span>
+      <h2 class="h2">{{BA_TITLE}}</h2>
+      <p class="lead">{{BA_LEAD}}</p>
+    </div>
+    <div class="duo">
+      <figure class="shot">
+        <img src="/assets/img/{{BA_BEFORE_IMG}}" alt="{{BA_BEFORE_ALT}}" loading="lazy" width="1400" height="1050" />
+        <figcaption><span class="shot-tag">Avant</span>{{BA_BEFORE_CAP}}</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="/assets/img/{{BA_AFTER_IMG}}" alt="{{BA_AFTER_ALT}}" loading="lazy" width="1400" height="1050" />
+        <figcaption><span class="shot-tag shot-ok">Après</span>{{BA_AFTER_CAP}}</figcaption>
+      </figure>
+    </div>
+    <p class="ba-note">Photos d'illustration du métier, pas de chantiers de l'entreprise. Vos propres photos avant et après vous sont remises en fin d'intervention.</p>
+  </div>
+</section>
+
+<!-- ================= LE BUDGET ================= -->
+<section class="section" id="prix">
+  <div class="wrap split split-tight">
+    <div>
+      <span class="kick">Le budget</span>
+      <h2 class="h2">{{PRIX_TITLE}}</h2>
+      <p class="lead">{{PRIX_LEAD}}</p>
+      <!-- ⚠️ Aucun prix n'est inventé : les cartes restent « Sur devis » tant que
+           David Demestre n'a pas validé de fourchette. Un prix affiché puis démenti
+           au téléphone coûte plus cher en conversion qu'un prix absent. -->
+      <div class="price-cards">
+        {{PRIX_CARDS}}
+      </div>
+      <p class="price-note">Le chiffrage est gratuit, remis après visite, détaillé poste par poste. Vous n'avancez rien pour l'obtenir et rien ne s'ajoute en cours de chantier.</p>
+    </div>
+    <div class="price-side">
+      <h3>Ce qui fait varier le prix</h3>
+      <ul class="tick">
+        {{PRIX_FACTORS}}
+      </ul>
+      <a href="#devis" class="btn btn-accent btn-block btn-lg">Obtenir mon prix exact</a>
+      <p class="price-side-note">Visite et devis gratuits, aucun acompte au devis.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= BANDE CTA ================= -->
+<section class="cta-band">
+  <img src="/assets/img/{{BAND_IMG}}" alt="{{BAND_ALT}}" loading="lazy" width="1600" height="900" />
+  <div class="cta-band-in">
+    <div class="wrap">
+      <h2>{{BAND_TITLE}}</h2>
+      <p>{{BAND_TEXT}}</p>
+      <div class="cta-band-btns">
+        <a href="tel:{{PHONE_TEL}}" class="btn btn-cream btn-lg js-tel">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6.5 4h3l1.2 3.5-2 1.3a11 11 0 0 0 4.5 4.5l1.3-2 3.5 1.2v3a2 2 0 0 1-2.2 2A15.5 15.5 0 0 1 4.5 6.2 2 2 0 0 1 6.5 4Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg>
+          {{PHONE_DISPLAY}}
+        </a>
+        <a href="#devis" class="btn btn-glass btn-lg">Devis gratuit en ligne</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= AVIS =================
+     ⚠️ N'INVENTEZ AUCUN AVIS. Coller les vrais avis Google dans la liste AVIS
+     de build.py (texte exact, prénom, commune) : la section s'affiche alors
+     toute seule. Tant que la liste est vide, elle reste masquée. -->
+<section class="section section-warm" id="avis"{{AVIS_HIDDEN}}>
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="kick">Avis</span>
+      <h2 class="h2">Ce que disent <em>ses clients.</em></h2>
+    </div>
+    <div class="note-google">
+      <span class="note-val">5,0</span>
+      <span class="note-txt"><span class="stars" aria-hidden="true">★★★★★</span>
+        <b>Note de sa fiche Google</b><span>4 avis, aucun sous la note maximale</span></span>
+    </div>
+    <div class="reviews">
+      {{AVIS_CARDS}}
+    </div>
+  </div>
+</section>
+
+<!-- ================= TERRITOIRE ================= -->
+<!-- Le bâti par secteur, et le cadrage « ce qu'on fait / ce qu'on ne fait
+     pas ». Ces deux blocs ne sortent que sur la page métier, la seule à
+     couvrir toute la zone. -->
+<section class="section section-warm" id="territoire"{{TERRITOIRE_HIDDEN}}>
+  <div class="wrap split">
+    <div>
+      <span class="kick">Le territoire</span>
+      <h2 class="h2">{{TERRITOIRE_TITRE}}</h2>
+      <p class="lead">{{TERRITOIRE_LEAD}}</p>
+      <div class="secteurs">
+        {{TERRITOIRE_ITEMS}}
+      </div>
+    </div>
+    <div class="cadrage">
+      <h3>{{CADRAGE_TITRE}}</h3>
+      <p>{{CADRAGE_FAIT}}</p>
+      <p class="cadrage-non"><b>Ce qu'il ne fait pas :</b> {{CADRAGE_NON}}</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= ZONE ================= -->
+<section class="section" id="zones">
+  <div class="wrap split">
+    <div>
+      <span class="kick">Zone d'intervention</span>
+      <h2 class="h2">{{ZONE_H2}}</h2>
+      <p class="lead">{{ZONE_LEAD}}</p>
+      <div class="zones">
+        {{ZONE_LIST}}
+      </div>
+      <p class="zones-note">Votre commune n'est pas dans la liste ? Un appel suffit pour savoir si le déplacement est possible.</p>
+    </div>
+    <figure class="frame">
+      <img src="/assets/img/{{ZONE_IMG}}" alt="{{ZONE_ALT}}" loading="lazy" width="1400" height="1050" />
+      <figcaption>{{ZONE_CAP}}</figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- ================= FAQ ================= -->
+<section class="section section-warm" id="faq">
+  <div class="wrap split split-tight">
+    <div class="faq-intro">
+      <div class="faq-intro-in">
+      <span class="kick">Questions</span>
+      <h2 class="h2">Vous vous <em>demandez…</em></h2>
+      <p class="lead">Une question qui n'est pas là ? Un appel suffit. Vous aurez un artisan au bout du fil, pas un commercial.</p>
+      </div>
+      <a href="tel:{{PHONE_TEL}}" class="btn btn-ink btn-lg js-tel faq-tel">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6.5 4h3l1.2 3.5-2 1.3a11 11 0 0 0 4.5 4.5l1.3-2 3.5 1.2v3a2 2 0 0 1-2.2 2A15.5 15.5 0 0 1 4.5 6.2 2 2 0 0 1 6.5 4Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg>
+        {{PHONE_DISPLAY}}
+      </a>
+    </div>
+    <div class="faq">
+      {{FAQ_ITEMS}}
+    </div>
+  </div>
+</section>
+
+<!-- ================= CTA FINAL ================= -->
+<section class="section final" id="contact">
+  <div class="wrap final-in">
+    <div class="final-copy">
+      <span class="kick">Demander un devis</span>
+      <h2 class="h2">{{FINAL_TITLE}}</h2>
+      <p class="lead">{{FINAL_LEAD}}</p>
+      <div class="after">
+        <div class="after-item"><b>Un rappel</b><p>Sous 48 h ouvrées, souvent le jour même.</p></div>
+        <div class="after-item"><b>Une visite</b><p>Il passe voir le toit. C'est gratuit.</p></div>
+        <div class="after-item"><b>Un devis écrit</b><p>Détaillé poste par poste, valable un mois.</p></div>
+        <div class="after-item"><b>Vous décidez</b><p>Rien n'est engagé tant que rien n'est signé.</p></div>
+      </div>
+      <div class="final-contacts">
+        <a class="fc js-tel" href="tel:{{PHONE_TEL}}"><span class="ic"><svg viewBox="0 0 24 24" fill="none"><path d="M6.5 4h3l1.2 3.5-2 1.3a11 11 0 0 0 4.5 4.5l1.3-2 3.5 1.2v3a2 2 0 0 1-2.2 2A15.5 15.5 0 0 1 4.5 6.2 2 2 0 0 1 6.5 4Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg></span><span><span class="l">Téléphone</span><span class="v">{{PHONE_DISPLAY}}</span></span></a>
+        <div class="fc"><span class="ic"><svg viewBox="0 0 24 24" fill="none"><path d="M12 7v5l3 2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.6"/></svg></span><span><span class="l">Horaires</span><span class="v small">Lundi au samedi, 7 h 30 à 18 h</span></span></div>
+        <div class="fc"><span class="ic"><svg viewBox="0 0 24 24" fill="none"><path d="M12 21s7-6.3 7-11a7 7 0 1 0-14 0c0 4.7 7 11 7 11Z" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="10" r="2.2" stroke="currentColor" stroke-width="1.6"/></svg></span><span><span class="l">Atelier</span><span class="v small">{{ADRESSE}}</span></span></div>
+      </div>
+    </div>
+    <a href="#devis" class="btn btn-accent btn-lg btn-block final-jump">Demander mon devis gratuit</a>
+    <div class="final-form">
+      <div class="form-head">
+        <h3>Demander mon devis</h3>
+        <p>Quatre champs, un rappel sous 48 h ouvrées.</p>
+      </div>
+      <form class="js-devis" id="devis-form-bas" novalidate>
+        <input type="hidden" name="access_key" value="{{WEB3FORMS_KEY}}" />
+        <input type="checkbox" name="botcheck" tabindex="-1" autocomplete="off" style="display:none" aria-hidden="true" />
+        <input type="hidden" name="gclid" /><input type="hidden" name="source" /><input type="hidden" name="campagne" /><input type="hidden" name="mot_cle" /><input type="hidden" name="page" />
+
+        <div class="field"><label for="nom2">Votre nom <span class="req">*</span></label><input id="nom2" name="nom" type="text" required autocomplete="name" placeholder="Nom et prénom" /></div>
+        <div class="field"><label for="tel2">Téléphone <span class="req">*</span></label><input id="tel2" name="tel" type="tel" required autocomplete="tel" inputmode="tel" placeholder="06 12 34 56 78" /></div>
+        <div class="field"><label for="ville2">Commune <span class="req">*</span></label><input id="ville2" name="ville" type="text" required autocomplete="address-level2" placeholder="{{VILLE_PH}}" /></div>
+        <div class="field">
+          <label for="besoin2">Votre besoin</label>
+          <div class="select-wrap">
+            <select id="besoin2" name="besoin">
+              {{BESOIN_OPTIONS}}
+            </select>
+          </div>
+        </div>
+        <label class="consent"><input type="checkbox" required /> <span>J'accepte d'être rappelé au sujet de ma demande.</span></label>
+        <button type="submit" class="btn btn-accent btn-lg btn-block">{{FORM_CTA}}</button>
+        <p class="form-note">Réponse sous 48 h ouvrées · Sans engagement</p>
+        <div class="form-success" role="status"><b>Demande bien reçue.</b><br>{{RAPPEL_LINE}}<br><a href="tel:{{PHONE_TEL}}">Plus pressé ? {{PHONE_DISPLAY}}</a></div>
+        <div class="form-error" role="alert">L'envoi a échoué. Appelez directement le <a href="tel:{{PHONE_TEL}}">{{PHONE_DISPLAY}}</a>.</div>
+      </form>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="footer">
+  <div class="wrap footer-in">
+    <div>
+      <b>{{BRAND}}</b>
+      <p>{{FOOTER_DESC}}</p>
+      <p>{{FOOTER_SERVICES}}</p>
+    </div>
+    <!-- ⚠️ MAQUETTE : le bloc légal (SIRET, assurance décennale, mentions légales,
+         données personnelles) doit être en place avant la première annonce.
+         Google Ads refuse les landings sans identification vérifiable. -->
+    <div class="footer-legal">
+      <span>{{FOOTER_TAGS}}</span>
+      <span>{{FOOTER_GEO}}</span>
+      <span>{{MENTIONS}}</span>
+      <span>© <span id="year">2026</span> · Tous droits réservés</span>
+    </div>
+  </div>
+</footer>
+
+<!-- Barre d'action mobile -->
+<div class="callbar">
+  <a href="tel:{{PHONE_TEL}}" class="call js-tel"><svg viewBox="0 0 24 24" fill="none"><path d="M6.5 4h3l1.2 3.5-2 1.3a11 11 0 0 0 4.5 4.5l1.3-2 3.5 1.2v3a2 2 0 0 1-2.2 2A15.5 15.5 0 0 1 4.5 6.2 2 2 0 0 1 6.5 4Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>Appeler</a>
+  <a href="#devis" class="quote">Devis gratuit</a>
+</div>
+
+<script src="/assets/script.js?v=2" defer></script>
+</body>
+</html>

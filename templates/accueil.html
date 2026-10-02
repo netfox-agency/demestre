@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<!-- ============================================================
+     SOMMAIRE DE LA RACINE. Généré par build.py, ne pas éditer.
+     Ce n'est PAS un site : la racine du domaine reste volontairement
+     libre pour le jour où un vrai site s'y installera. Cette page ne
+     fait qu'orienter vers les pages d'atterrissage, qui portent chacune
+     leur URL. Aucune annonce ne doit pointer dessus.
+     ============================================================ -->
+
+<title>{{TITLE}}</title>
+<meta name="robots" content="noindex, nofollow" />
+<meta name="theme-color" content="#251f19" />
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml" />
+<!-- Polices auto-hébergées dans assets/fonts : zéro requête tierce. -->
+<link rel="stylesheet" href="/assets/styles.css?v={{CSS_V}}" />
+<style>
+  .menu { list-style: none; margin: 0; padding: 0; }
+  .menu li { border-top: 1px solid var(--line); }
+  .menu li:last-child { border-bottom: 1px solid var(--line); }
+  .menu a {
+    display: grid; grid-template-columns: 1fr auto; align-items: center;
+    gap: 20px; padding: 26px 4px; text-decoration: none; color: inherit;
+    transition: padding-left .25s var(--ease);
+  }
+  .menu a:hover { padding-left: 12px; }
+  .menu b { display: block; font-size: 21px; font-weight: 600; letter-spacing: -0.024em; }
+  .menu span { display: block; margin-top: 5px; font-size: 15.4px; color: var(--ink-2); line-height: 1.45; }
+  .menu .go { width: 30px; height: 30px; color: var(--ink-4); flex: none; }
+  .menu a:hover .go { color: var(--tuile); }
+  .accueil-head { padding: clamp(112px, 10vw, 132px) 0 clamp(44px, 4.5vw, 62px); }
+  .accueil-head h1 { max-width: 13em; }
+  .accueil-head .lead { color: rgba(255, 255, 255, .78); margin-top: 18px; max-width: 34em; }
+  .accueil-head .hero-cta { margin-top: 28px; }
+  @media (max-width: 860px) {
+    .accueil-head { padding: 84px 0 34px; }
+    .menu a { padding: 20px 2px; }
+    .menu b { font-size: 18.5px; }
+    .menu span { font-size: 14.6px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="wrap topbar-in">
+    <span class="brand">
+      <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M4 29 24 9l20 20" stroke-width="3.2"/><path d="M24 9V3M21 5.5h6" stroke-width="2.4"/><path d="M11 25h26M15 21h18" stroke-width="2" opacity=".5"/><path d="M9 30v13M39 30v13M9 43h30" stroke-width="2.4"/></svg></span>
+      <span class="brand-txt"><b>{{BRAND_SHORT}}</b><span class="bd">{{BRAND_TAG}}</span></span>
+    </span>
+    <div class="topbar-cta">
+      <a href="tel:{{PHONE_TEL}}" class="btn btn-cream btn-sm js-tel">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6.5 4h3l1.2 3.5-2 1.3a11 11 0 0 0 4.5 4.5l1.3-2 3.5 1.2v3a2 2 0 0 1-2.2 2A15.5 15.5 0 0 1 4.5 6.2 2 2 0 0 1 6.5 4Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg>
+        {{PHONE_DISPLAY}}
+      </a>
+    </div>
+  </div>
+</header>
+
+<header class="page-hero accueil-head">
+  <div class="wrap">
+    <h1>{{ACCUEIL_H1}}</h1>
+    <p class="lead">{{ACCUEIL_LEAD}}</p>
+    <div class="hero-cta">
+      <a href="tel:{{PHONE_TEL}}" class="btn btn-cream btn-lg js-tel">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6.5 4h3l1.2 3.5-2 1.3a11 11 0 0 0 4.5 4.5l1.3-2 3.5 1.2v3a2 2 0 0 1-2.2 2A15.5 15.5 0 0 1 4.5 6.2 2 2 0 0 1 6.5 4Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg>
+        {{PHONE_DISPLAY}}
+      </a>
+    </div>
+  </div>
+</header>
+
+<main class="section">
+  <div class="wrap">
+    <ul class="menu">
+      {{MENU}}
+    </ul>
+  </div>
+</main>
+
+<footer class="footer">
+  <div class="wrap footer-in">
+    <div>
+      <b>{{BRAND}}</b>
+      <p>{{ADRESSE}} · Lundi au samedi, 7 h 30 à 18 h · <a href="tel:{{PHONE_TEL}}" class="js-tel">{{PHONE_DISPLAY}}</a></p>
+      <div class="footer-legal">
+        <span>{{BRAND_TAG}}</span>
+        <span>{{FOOTER_GEO}}</span>
+        <span>{{MENTIONS}}</span>
+        <span>© <span id="year">2026</span> · Tous droits réservés</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="/assets/script.js?v={{JS_V}}" defer></script>
+</body>
+</html>
