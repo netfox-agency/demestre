@@ -25,10 +25,13 @@ import sys
 ROOT = pathlib.Path(__file__).parent
 
 # ============================================================ CONSTANTES CLIENT
-# ⚠️ PLACEHOLDER : numéro professionnel non encore communiqué.
-# À remplacer ici (une édition = toutes les pages), puis relancer le build.
-PHONE_DISPLAY = "06 00 00 00 00"
-PHONE_TEL = "+33600000000"
+# Numéro professionnel de David, recoupé sur deux sources qui concordent :
+# l'extension d'appel du compte Ads 594-379-1441 (c'est ce numéro que Google
+# compose sous l'annonce) et le schema RoofingContractor de son propre site.
+# Les deux doivent rester identiques : un écart et le suivi des appels se
+# scinde en deux statistiques qui ne se recoupent jamais.
+PHONE_DISPLAY = "06 38 59 44 56"
+PHONE_TEL = "+33638594456"
 
 # ⚠️ PLACEHOLDER : domaine à réserver. Proposition retenue faute de mieux ;
 # « demestre-couverture.fr » est libre au moment de la rédaction.
@@ -41,12 +44,20 @@ WEB3FORMS_KEY = "REMPLACER_PAR_VOTRE_CLE_WEB3FORMS"
 # ignore l'envoi (aucune conversion fantôme pendant la recette).
 # Compte créé le 21/09/2026 : 594-379-1441, EUR, Europe/Paris, balisage
 # automatique actif. L'identifiant ci-dessous est celui attribué au compte.
-# ⚠️ Les deux LIBELLÉS restent en XXXX : les actions de conversion n'existent
-# pas encore dans le compte (statut NOT_CONVERSION_TRACKED). Tant qu'ils sont
-# en XXXX, rien n'est envoyé — c'est voulu.
+# Les trois chemins de conversion du compte, et qui déclenche quoi :
+#   « Demande de devis (site) »    id 7819444040  ← ADS_CONV_DEVIS, à l'envoi
+#                                                   réussi du formulaire
+#   « Appel depuis le site »       id 7819444043  ← ADS_CONV_APPEL, au clic
+#                                                   sur un lien tel:
+#   « Appels depuis les annonces » (AD_CALL)      ← ne passe PAS par la page :
+#       c'est l'extension d'appel qui le compte, via le numéro de suivi Google.
+#       Rien à poser ici, et c'est sa force : ce chemin tient même si la page
+#       tombe.
+# Les libellés sont relevés dans le compte, pas inventés : un libellé faux
+# n'émet aucune erreur, il remonte simplement zéro conversion pour toujours.
 ADS_GTAG = "AW-18467990702"
-ADS_CONV_DEVIS = "AW-18467990702/XXXXdevisXXXX"
-ADS_CONV_APPEL = "AW-18467990702/XXXXappelXXXX"
+ADS_CONV_DEVIS = "AW-18467990702/5rtMCMj-zJAdEK7ZnOZE"
+ADS_CONV_APPEL = "AW-18467990702/5T3ECMv-zJAdEK7ZnOZE"
 
 # ============================================================ IDENTITÉ
 # Identité publiée au registre du commerce :
