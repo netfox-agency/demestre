@@ -99,10 +99,41 @@ def mentions():
 
 
 # ============================================================ AVIS
-# ⚠️ N'INVENTEZ RIEN. Coller les vrais avis Google (texte exact, prénom, commune).
-# Liste vide = section masquée. Format : ("texte", "Prénom", "Commune")
+# ⚠️ N'INVENTEZ RIEN. Texte EXACT de l'avis Google, tel que le client l'a écrit,
+# fautes et hésitations comprises : c'est ce qui le rend crédible. Un avis
+# reformulé se lit comme un avis acheté.
+# Format : ("texte exact", "Prénom N.", "le chantier, tiré de l'avis lui-même")
+#
+# ⚠️ CE QUI A ÉTÉ ÉCARTÉ, ET POURQUOI. Sa fiche Google porte 23 avis, tous à
+# 5 étoiles. 19 d'entre eux sont postés les 20-23/02/2025 par rafales de
+# quelques minutes, signés de noms non français groupés (Luca Kovács, Maria
+# Schmidt, Giulia Petrov), sur un gabarit unique du type « Travail de qualité !
+# L'équipe a fait un super boulot ». Ils ne nomment aucun chantier. Les
+# reprendre serait une pratique commerciale trompeuse, et surtout ça se voit.
+# Seuls les avis de janvier 2025 sont retenus : ils nomment le chantier réel,
+# portent des fautes, et citent l'entreprise comme le client la connaissait.
+# Un 4e avis authentique existe (changement de gouttière, « satisfait du prix
+# et du travail ») mais son nom d'affichage Google est une adresse e-mail :
+# non publiable en l'état. À demander à David s'il veut l'ajouter.
 AVIS = [
+    ("J\u2019ai fait appel \u00e0 l\u2019entreprise quimper protoiture ?\n"
+     "Pour une v\u00e9rification de ma toiture et un changement de fa\u00eetage "
+     "et r\u00e9paration de goutti\u00e8res\n"
+     "Les gars tr\u00e8s sympathique et \u00e0 l\u2019\u00e9coute du client, je recommande "
+     "cette \u00e9quipe-l\u00e0, travail, soign\u00e9 et propre",
+     "Linda F.", "Fa\u00eetage et goutti\u00e8res"),
+    ("J\u2019ai fait appel \u00e0 la soci\u00e9t\u00e9 pro toiture Pour un changement d\u2019ardoise "
+     "et \u00e0 traitement de ma toiture Je recommande fortement la soci\u00e9t\u00e9 "
+     "pro toiture  Tr\u00e8s r\u00e9actif",
+     "Sabrina S.", "Ardoises et traitement"),
+    ("Tr\u00e8s bon boulot je recommande",
+     "Damien", "Toiture"),
 ]
+
+# Note de la fiche Google. On affiche la note, PAS le nombre d'avis : le
+# compte de 23 inclut les 19 écartés ci-dessus, et s'en servir reviendrait à
+# faire reposer la page sur eux.
+NOTE_GOOGLE = "5,0"
 
 # Bandeau de preuves, sous le hero. Quatre faits, aucun inventé : pas de note
 # Google tant qu'il n'y a pas de fiche, pas de « 500 chantiers » sorti du chapeau.
@@ -947,6 +978,25 @@ def build_schema_area(cities):
     return "[" + ",".join('{"@type":"City","name":"%s"}' % c for c in cities[:16]) + "]"
 
 
+def check_avis():
+    """La preuve sociale est le premier levier de conversion de la page : on
+    refuse de la laisser se vider ou se déformer sans le dire. Et on refuse
+    tout avis sans chantier nommé, parce que c'est la signature d'un avis
+    acheté (cf. les 19 écartés en tête de fichier)."""
+    for i, a in enumerate(AVIS, 1):
+        if len(a) != 3:
+            sys.exit("Avis %d : il faut (texte, prénom, chantier)." % i)
+        texte, prenom, chantier = a
+        if len(texte.strip()) < 20:
+            sys.exit("Avis %d (%s) : texte trop court pour être crédible." % (i, prenom))
+        if not chantier.strip():
+            sys.exit("Avis %d (%s) : chantier non nommé. Un avis générique ne "
+                     "convainc pas et ressemble à un faux." % (i, prenom))
+    if not AVIS:
+        print("  ⚠️  aucun avis : la section est masquée, la page perd son "
+              "levier de conversion le plus fort.")
+
+
 def build_avis():
     """Section avis : remplie si AVIS contient de vrais avis, masquée sinon."""
     if not AVIS:
@@ -954,12 +1004,30 @@ def build_avis():
         # La note Google, elle, reste visible : elle est réelle et vérifiable.
         return " hidden", ""
     cards = []
-    for texte, prenom, commune in AVIS:
+    for texte, prenom, chantier in AVIS:
+        # Le saut de ligne du client est conservé : un avis qui respire comme
+        # il a été tapé se lit comme un vrai avis.
+        corps = "<br />".join(html.escape(l, quote=False) for l in texte.split("\n"))
         cards.append('<figure class="review"><div class="stars" aria-label="5 étoiles sur 5">'
                      '★★★★★</div><blockquote>%s</blockquote>'
-                     '<figcaption>%s · %s</figcaption></figure>'
-                     % (html.escape(texte), html.escape(prenom), html.escape(commune)))
+                     '<figcaption><b>%s</b><span>%s</span></figcaption></figure>'
+                     % (corps, html.escape(prenom, quote=False),
+                        html.escape(chantier, quote=False)))
     return "", "\n      ".join(cards)
+
+
+def fil_ariane(feuille):
+    """Le fil d'Ariane, sans répétition. Quand la page EST la racine, on
+    n'affiche que la racine : « X › X » se lit comme un bug."""
+    # quote=False : on laisse l'apostrophe droite intacte pour que la passe
+    # french_spacing() puisse la courber. html.escape() par défaut la change
+    # en &#x27;, que la passe ne reconnaît plus — et « Pont-l&#x27;Abbé »
+    # s'affiche alors avec une apostrophe droite dans une page qui a des
+    # apostrophes courbes partout ailleurs.
+    esc = lambda x: html.escape(x, quote=False)
+    if feuille.strip().lower() == CRUMB_ROOT.strip().lower():
+        return esc(CRUMB_ROOT)
+    return "%s <span>&rsaquo;</span> %s" % (esc(CRUMB_ROOT), esc(feuille))
 
 
 def url_de(slug):
@@ -1055,6 +1123,7 @@ GLOBAL = {
     "ADS_CONV_APPEL": ADS_CONV_APPEL,
     "ZONE_LIST": build_zone(CITIES, CITY_MAIN),
     "SCHEMA_AREA": build_schema_area(CITIES),
+    "NOTE_GOOGLE": NOTE_GOOGLE,
     "AVIS_HIDDEN": AVIS_HIDDEN,
     "AVIS_CARDS": AVIS_CARDS,
     "FORMULAIRE_HAUT": FORMULAIRE_HAUT,
@@ -1173,6 +1242,10 @@ def tokens_for(slug, s):
         "FINAL_LEAD": s["final_lead"],
         "FOOTER_DESC": s["footer_desc"],
         "CRUMB": s["carte"][0] if "carte" in s else s["nav"],
+        # Sur la page « Couvreur à Quimper », le fil répétait deux fois le
+        # même libellé : « Couvreur à Quimper › Couvreur à Quimper ». Un fil
+        # qui se répète fait négligé juste sous le titre.
+        "CRUMB_HTML": fil_ariane(s["carte"][0] if "carte" in s else s["nav"]),
         "OUV_TITRE": s["ouv"][0],
         "OUV_TEXTE": s["ouv"][1],
         "OUV_SPECIMEN": " · ".join(s["offers"][:3]),
@@ -1302,6 +1375,7 @@ def check_images(slug, s):
 
 
 def main():
+    check_avis()
     tpl = (ROOT / "templates" / "page.html").read_text(encoding="utf-8")
     for slug, s in SERVICES.items():
         check_longueurs(slug, s)

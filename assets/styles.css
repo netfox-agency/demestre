@@ -63,6 +63,28 @@
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 /* latin-ext */
+/* Petrona, l'accent de ce client, en italique uniquement : c'est la seconde
+   police qui fait basculer une page de « gabarit » à « dessinée ». Chaque
+   client du parc a la sienne pour qu'ils ne se ressemblent pas (Bricolage
+   chez VB et Debord, Newsreader chez Rocky, Fraunces chez WM). */
+/* latin-ext */
+@font-face {
+  font-family: 'Petrona';
+  font-style: italic;
+  font-weight: 500;
+  font-display: swap;
+  src: url(fonts/Petrona-500-italic-latin-ext.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Petrona';
+  font-style: italic;
+  font-weight: 500;
+  font-display: swap;
+  src: url(fonts/Petrona-500-italic-latin.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
 @font-face {
   font-family: 'Inter';
   font-style: normal;
@@ -209,7 +231,7 @@
      couple maison de l'agence. L'emphase d'un titre ne se fait pas
      par un changement de police mais par la couleur (l'or), comme chez VB. */
   --display: "Bricolage Grotesque", ui-sans-serif, system-ui, sans-serif;
-  --serif:   var(--display);
+  --serif:   "Petrona", Georgia, "Times New Roman", serif;
 
   /* La terre cuite pleine ne contraste pas assez sur une photo sombre : sa
      version claire sert uniquement au texte posé sur fond sombre. C'est le
@@ -259,6 +281,17 @@ h1 em, .h2 em, h2 em {
   color: var(--tuile);
 }
 h3 em { font-style: normal; color: inherit; }
+/* L'ACCENT. Uniquement sur le second membre d'un titre, jamais dans le corps.
+   Petrona porte une oeil plus petit que Bricolage à taille égale : on la
+   remonte d'un cran (1.04em) et on relâche l'approche, sinon l'italique
+   paraît rétréci à côté du romain. */
+h1 em, .h2 em, .cta-band h2 em {
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 500;
+  font-size: 1.04em;
+  letter-spacing: -.008em;
+}
 .cta-band h2 em, .section-dark .h2 em { color: var(--gold-bright); }
 .page-hero h1 em { color: var(--gold-bright); }
 
@@ -643,6 +676,9 @@ form.is-sent .field, form.is-sent .consent, form.is-sent button, form.is-sent .f
   display: flex; align-items: center; gap: 22px;
   padding: 26px 30px; margin-bottom: clamp(30px, 3.5vw, 46px);
   background: var(--surface); border-radius: var(--r-lg);
+  /* Se cale sur son contenu : un panneau blanc vide aux trois quarts
+     se lit comme un bloc inachevé. */
+  width: fit-content; max-width: 100%;
 }
 .note-val { font-size: clamp(44px, 5vw, 62px); font-weight: 600; letter-spacing: -0.04em; line-height: 1; }
 .note-txt { display: block; }
@@ -709,9 +745,10 @@ form.is-sent .field, form.is-sent .consent, form.is-sent button, form.is-sent .f
 .step:first-child::after { left: 0; }
 .step .n {
   display: block; margin-bottom: 2px;
-  /* Chiffres en display gras, droits : chez VB rien n'est en italique. */
-  font-family: var(--display); font-weight: 800; font-size: 24px;
-  line-height: 1.1; color: var(--tuile); letter-spacing: -0.02em;
+  /* 01…04 en serif italique : le chiffre devient un repère dessiné, pas une
+     puce. C'est ce que build_steps() formate déjà en %02d. */
+  font-family: var(--serif); font-style: italic; font-weight: 500;
+  font-size: 34px; line-height: 1; color: var(--tuile); letter-spacing: -.01em;
 }
 .step h3 { font-size: 19.5px; margin: 6px 0 8px; color: var(--ink); }
 .step p { margin: 0; font-size: 15.5px; line-height: 1.52; color: var(--ink-2); }
@@ -831,9 +868,13 @@ form.is-sent .field, form.is-sent .consent, form.is-sent button, form.is-sent .f
 /* avis */
 .reviews { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(28px, 3.4vw, 48px); }
 .review { margin: 0; padding-top: 24px; border-top: 1px solid var(--line); }
-.stars { color: var(--ink-4); letter-spacing: .08em; font-size: 14px; }
+.stars { color: #F0A02A; letter-spacing: .08em; font-size: 14px; }
 .review blockquote { margin: 16px 0 18px; font-size: 17px; line-height: 1.5; letter-spacing: -0.014em; }
-.review figcaption { font-size: 13.6px; color: var(--ink-3); }
+/* Le prénom en encre pleine, le chantier dessous dans l'accent : c'est le
+   chantier nommé qui prouve que l'avis est réel, il mérite sa ligne. */
+.review figcaption { display: flex; flex-direction: column; gap: 2px; font-size: 13.6px; }
+.review figcaption b { font-weight: 650; color: var(--ink); letter-spacing: -.01em; }
+.review figcaption span { color: var(--tuile); font-size: 13px; }
 
 /* zone : des pastilles, et une photo du pays à côté. En liste séparée par
    des points, ça faisait un mur de texte gris sur toute la largeur. */

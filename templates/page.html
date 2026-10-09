@@ -35,7 +35,7 @@
 <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml" />
 
 <!-- Polices auto-hébergées dans assets/fonts : zéro requête tierce. -->
-<link rel="stylesheet" href="/assets/styles.css?v=13" />
+<link rel="stylesheet" href="/assets/styles.css?v=14" />
 
 <!-- Google Ads : gtag + conversions. Inactif tant que les IDs contiennent XXXX. -->
 <script>
@@ -150,7 +150,7 @@ window.ADS_CONVERSION_APPEL = '{{ADS_CONV_APPEL}}';  /* « Appel depuis le site 
 <section class="section devis-sec" id="devis">
   <div class="wrap lp-grid">
     <div class="lp-copy">
-      <p class="crumb">{{CRUMB_ROOT}} <span>&rsaquo;</span> {{CRUMB}}</p>
+      <p class="crumb">{{CRUMB_HTML}}</p>
       <h2 class="h2">{{OUV_TITRE}}</h2>
       <p class="lead">{{OUV_TEXTE}}</p>
       <ul class="lp-points">
@@ -298,9 +298,9 @@ window.ADS_CONVERSION_APPEL = '{{ADS_CONV_APPEL}}';  /* « Appel depuis le site 
       <h2 class="h2">Ce que disent <em>ses clients.</em></h2>
     </div>
     <div class="note-google">
-      <span class="note-val">5,0</span>
+      <span class="note-val">{{NOTE_GOOGLE}}</span>
       <span class="note-txt"><span class="stars" aria-hidden="true">★★★★★</span>
-        <b>Note de sa fiche Google</b><span>4 avis, aucun sous la note maximale</span></span>
+        <b>Note de sa fiche Google</b><span>Vérifiable sur sa fiche, à son nom</span></span>
     </div>
     <div class="reviews">
       {{AVIS_CARDS}}
