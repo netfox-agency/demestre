@@ -1117,7 +1117,11 @@ GLOBAL = {
     "PHONE_DISPLAY": PHONE_DISPLAY,
     "PHONE_TEL": PHONE_TEL,
     "URL_BASE": URL_BASE,
-    "WEB3FORMS_KEY": WEB3FORMS_KEY,
+    # La clé n'est PAS écrite dans la page tant qu'elle est en placeholder :
+    # « REMPLACER_PAR_VOTRE_CLE_WEB3FORMS » en clair dans le code source d'une
+    # page publique annonce un chantier inachevé à qui regarde. Champ vide,
+    # script.js refuse déjà l'envoi (`if (!key)`), le comportement ne change pas.
+    "WEB3FORMS_KEY": "" if "REMPLACER" in WEB3FORMS_KEY else WEB3FORMS_KEY,
     "ADS_GTAG": ADS_GTAG,
     "ADS_CONV_DEVIS": ADS_CONV_DEVIS,
     "ADS_CONV_APPEL": ADS_CONV_APPEL,
@@ -1286,6 +1290,30 @@ def french_spacing(html_text):
     return "".join(parts)
 
 
+def strip_commentaires(html_text):
+    """Retire les commentaires HTML de la page LIVRÉE.
+
+    Ils restent dans templates/page.html, où ils servent à la maintenance.
+    Mais sur la page en ligne, « Afficher le code source » les expose à
+    n'importe qui : un concurrent, et surtout le client. On y lisait
+    « tant que David Demestre n'a pas validé de fourchette », « N'INVENTEZ
+    AUCUN AVIS », « noindex tant que les mentions légales ne sont pas en
+    place » et le nom du générateur. Ce sont des notes d'agence, pas du
+    contenu client.
+
+    Les blocs <script> sont préservés tels quels : un JSON-LD peut contenir
+    une suite de caractères qui ressemble à un commentaire.
+    """
+    parts = re.split(r"(<script.*?</script>)", html_text, flags=re.S)
+    for i, part in enumerate(parts):
+        if part.startswith("<script"):
+            continue
+        parts[i] = re.sub(r"<!--.*?-->", "", part, flags=re.S)
+    out = "".join(parts)
+    # Les lignes devenues vides laissent des trous dans la source.
+    return re.sub(r"\n[ \t]*\n[ \t]*\n+", "\n\n", out)
+
+
 def render(template_text, slug, s):
     out = template_text
     jetons = tokens_for(slug, s)
@@ -1294,6 +1322,7 @@ def render(template_text, slug, s):
     for _ in range(2):
         for k, v in jetons.items():
             out = out.replace("{{%s}}" % k, v)
+    out = strip_commentaires(out)
     out = french_spacing(out)
     leftover = sorted(set(re.findall(r"\{\{([A-Z0-9_]+)\}\}", out)))
     if leftover:
@@ -1336,6 +1365,7 @@ def render_accueil():
     out = tpl
     for k, v in jetons.items():
         out = out.replace("{{%s}}" % k, v)
+    out = strip_commentaires(out)
     out = french_spacing(out)
     leftover = sorted(set(re.findall(r"\{\{([A-Z0-9_]+)\}\}", out)))
     if leftover:
@@ -1376,6 +1406,11 @@ def check_images(slug, s):
 
 def main():
     check_avis()
+    if "REMPLACER" in WEB3FORMS_KEY:
+        print("  ⚠️  CLÉ WEB3FORMS MANQUANTE : le formulaire n'enverra RIEN.")
+        print("      On paierait des clics pour des demandes qui n'arrivent")
+        print("      nulle part. À créer avec l'e-mail de l'entreprise, puis")
+        print("      renseigner WEB3FORMS_KEY et relancer le build.")
     tpl = (ROOT / "templates" / "page.html").read_text(encoding="utf-8")
     for slug, s in SERVICES.items():
         check_longueurs(slug, s)

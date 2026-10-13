@@ -4,22 +4,9 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-<!-- ============================================================
-     Page générée par build.py. NE JAMAIS ÉDITER LES FICHIERS GÉNÉRÉS&nbsp;:
-     éditer templates/page.html (structure) ou build.py (contenu),
-     puis relancer `python3 build.py`.
-     ⚠️ RESTE À FAIRE AVANT LA PREMIÈRE ANNONCE (détail dans README.md)
-     1. DOMAINE  &nbsp;: https://demestre.pages.dev acheté, reste à brancher sur Cloudflare Pages
-     2. WEB3FORMS&nbsp;: clé à créer avec l’email de David Demestre
-     3. LÉGAL    &nbsp;: mentions légales + SIRET + décennale (exigés par Google Ads)
-     4. CONVERSIONS&nbsp;: IDs Ads (inactifs tant qu’ils contiennent XXXX)
-     5. AVIS     &nbsp;: coller les vrais avis Google (section #avis masquée)
-     ============================================================ -->
-
 <title>Démoussage de toiture en Sud-Finistère | David Demestre</title>
 <meta name="description" content="Démoussage de toiture en ardoise en Sud-Finistère&nbsp;: nettoyage doux sans haute pression, gouttières dégagées. Quimper, Concarneau, Douarnenez." />
-<!-- noindex tant que le domaine et les mentions légales ne sont pas en place.
-     Sans effet sur Google Ads&nbsp;: une landing en noindex se diffuse normalement. -->
+
 <meta name="robots" content="noindex, nofollow" />
 <link rel="canonical" href="https://demestre.pages.dev/demoussage-toiture-finistere/" />
 
@@ -34,10 +21,8 @@
 <meta name="geo.placename" content="Quimper" />
 <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml" />
 
-<!-- Polices auto-hébergées dans assets/fonts&nbsp;: zéro requête tierce. -->
 <link rel="stylesheet" href="/assets/styles.css?v=14" />
 
-<!-- Google Ads&nbsp;: gtag + conversions. Inactif tant que les IDs contiennent XXXX. -->
 <script>
 window.ADS_GTAG = 'AW-18467990702';
 if (window.ADS_GTAG.indexOf('XXXX') === -1) {
@@ -90,7 +75,6 @@ window.ADS_CONVERSION_APPEL = 'AW-18467990702/5T3ECMv-zJAdEK7ZnOZE';  /* « Appe
 </head>
 <body data-lp="demoussage_quimper">
 
-<!-- ================= HEADER ================= -->
 <header class="topbar">
   <div class="wrap topbar-in">
     <a href="#top" class="brand" aria-label="David Demestre Couverture">
@@ -115,13 +99,6 @@ window.ADS_CONVERSION_APPEL = 'AW-18467990702/5T3ECMv-zJAdEK7ZnOZE';  /* « Appe
 
 <main id="top">
 
-<!-- ================= HERO ================= -->
-<!-- Hero pleine image&nbsp;: la photo occupe tout le cadre,
-     bord à bord, et le texte est posé DANS LE VIDE de l’image (ciel, pan de
-     toit sombre), jamais sur l’artisan. Le dégradé ne monte que du bas et de
-     la gauche&nbsp;: la photo n’est pas assombrie dans son ensemble.
-     Le formulaire n’est plus dans le hero&nbsp;: il a sa propre section, juste
-     dessous, avec les quatre arguments du service en vis-à-vis. -->
 <header class="page-hero" id="top">
   <img class="hero-bg" src="/assets/img/hero-demoussage.jpg" alt="Toits d’ardoise d’une maison bretonne envahis de lichens jaunes"
        srcset="/assets/img/hero-demoussage-mob.jpg 900w, /assets/img/hero-demoussage.jpg 1920w"
@@ -146,7 +123,6 @@ window.ADS_CONVERSION_APPEL = 'AW-18467990702/5T3ECMv-zJAdEK7ZnOZE';  /* « Appe
   </div>
 </header>
 
-<!-- ================= DEVIS ================= -->
 <section class="section devis-sec" id="devis">
   <div class="wrap lp-grid">
     <div class="lp-copy">
@@ -168,9 +144,9 @@ window.ADS_CONVERSION_APPEL = 'AW-18467990702/5T3ECMv-zJAdEK7ZnOZE';  /* « Appe
           <p>Quatre champs, une minute. David vous rappelle lui-même, avec une première estimation et une date de visite.</p>
         </div>
         <form class="js-devis" id="devis-form" novalidate>
-          <input type="hidden" name="access_key" value="REMPLACER_PAR_VOTRE_CLE_WEB3FORMS" />
+          <input type="hidden" name="access_key" value="" />
           <input type="checkbox" name="botcheck" tabindex="-1" autocomplete="off" style="display:none" aria-hidden="true" />
-          <!-- Traçabilité Google Ads&nbsp;: rempli automatiquement par script.js -->
+          
           <input type="hidden" name="gclid" /><input type="hidden" name="source" /><input type="hidden" name="campagne" /><input type="hidden" name="mot_cle" /><input type="hidden" name="page" />
 
           <div class="field"><label for="nom">Votre nom <span class="req">*</span></label><input id="nom" name="nom" type="text" required autocomplete="name" placeholder="Nom et prénom" /></div>
@@ -210,10 +186,6 @@ window.ADS_CONVERSION_APPEL = 'AW-18467990702/5T3ECMv-zJAdEK7ZnOZE';  /* « Appe
   </div>
 </section>
 
-<!-- ================= LES PREUVES ================= -->
-<!-- Les quatre arguments du service sont remontés dans le hero&nbsp;: ce bandeau
-     porte les quatre preuves de l’entreprise, qui ne changent pas d’une page
-     à l’autre. Aucune des deux listes ne répète l’autre. -->
 <div class="trust">
   <div class="wrap proofband">
     <div><b>Ardoise</b><span>la couverture du pays bigouden</span></div>
@@ -223,7 +195,6 @@ window.ADS_CONVERSION_APPEL = 'AW-18467990702/5T3ECMv-zJAdEK7ZnOZE';  /* « Appe
   </div>
 </div>
 
-<!-- ================= L’ENJEU ================= -->
 <section class="section section-dark" id="pourquoi">
   <div class="wrap">
     <div class="sec-head">
@@ -241,7 +212,6 @@ window.ADS_CONVERSION_APPEL = 'AW-18467990702/5T3ECMv-zJAdEK7ZnOZE';  /* « Appe
   </div>
 </section>
 
-<!-- ================= LA PRESTATION ================= -->
 <section class="section" id="prestation">
   <div class="wrap">
     <div class="sec-head">
@@ -273,9 +243,6 @@ window.ADS_CONVERSION_APPEL = 'AW-18467990702/5T3ECMv-zJAdEK7ZnOZE';  /* « Appe
   </div>
 </section>
 
-<!-- ================= AVANT / APRÈS ================= -->
-<!-- Deux cartes photo légendées&nbsp;: la preuve visuelle du résultat, sans lien
-     sortant. Sur une page d’annonce, chaque lien qui sort est un lead perdu. -->
 <section class="section section-warm" id="resultat">
   <div class="wrap">
     <div class="sec-head">
@@ -297,16 +264,13 @@ window.ADS_CONVERSION_APPEL = 'AW-18467990702/5T3ECMv-zJAdEK7ZnOZE';  /* « Appe
   </div>
 </section>
 
-<!-- ================= LE BUDGET ================= -->
 <section class="section" id="prix">
   <div class="wrap split split-tight">
     <div>
       <span class="kick">Le budget</span>
       <h2 class="h2">Combien coûte <em>un démoussage&nbsp;?</em></h2>
       <p class="lead">Un démoussage se chiffre au mètre carré de toiture, mais deux toits de même surface ne coûtent pas la même chose&nbsp;: la pente, l’accès et l’épaisseur de la mousse changent tout.</p>
-      <!-- ⚠️ Aucun prix n’est inventé&nbsp;: les cartes restent «&nbsp;Sur devis&nbsp;» tant que
-           David Demestre n’a pas validé de fourchette. Un prix affiché puis démenti
-           au téléphone coûte plus cher en conversion qu’un prix absent. -->
+      
       <div class="price-cards">
         <div class="price-card featured"><span class="pc-lab">Démoussage seul</span><span class="pc-line"><span class="pc-val">Sur devis</span><span class="pc-pill">le plus demandé</span></span><p>Nettoyage de la couverture, gouttières dégagées, déchets ramassés.</p></div>
         <div class="price-card"><span class="pc-lab">Démoussage et traitement</span><span class="pc-line"><span class="pc-val">Sur devis</span></span><p>Nettoyage, puis traitement anti-mousse rémanent sur couverture sèche.</p></div>
@@ -329,7 +293,6 @@ window.ADS_CONVERSION_APPEL = 'AW-18467990702/5T3ECMv-zJAdEK7ZnOZE';  /* « Appe
   </div>
 </section>
 
-<!-- ================= BANDE CTA ================= -->
 <section class="cta-band">
   <img src="/assets/img/maison-bretonne.jpg" alt="Maison bretonne en pierre couverte d’ardoise, ciel gris" loading="lazy" width="1600" height="900" />
   <div class="cta-band-in">
@@ -347,10 +310,6 @@ window.ADS_CONVERSION_APPEL = 'AW-18467990702/5T3ECMv-zJAdEK7ZnOZE';  /* « Appe
   </div>
 </section>
 
-<!-- ================= AVIS =================
-     ⚠️ N’INVENTEZ AUCUN AVIS. Coller les vrais avis Google dans la liste AVIS
-     de build.py (texte exact, prénom, commune)&nbsp;: la section s’affiche alors
-     toute seule. Tant que la liste est vide, elle reste masquée. -->
 <section class="section section-warm" id="avis">
   <div class="wrap">
     <div class="sec-head">
@@ -370,10 +329,6 @@ window.ADS_CONVERSION_APPEL = 'AW-18467990702/5T3ECMv-zJAdEK7ZnOZE';  /* « Appe
   </div>
 </section>
 
-<!-- ================= TERRITOIRE ================= -->
-<!-- Le bâti par secteur, et le cadrage «&nbsp;ce qu’on fait / ce qu’on ne fait
-     pas&nbsp;». Ces deux blocs ne sortent que sur la page métier, la seule à
-     couvrir toute la zone. -->
 <section class="section section-warm" id="territoire" hidden>
   <div class="wrap split">
     <div>
@@ -392,7 +347,6 @@ window.ADS_CONVERSION_APPEL = 'AW-18467990702/5T3ECMv-zJAdEK7ZnOZE';  /* « Appe
   </div>
 </section>
 
-<!-- ================= ZONE ================= -->
 <section class="section" id="zones">
   <div class="wrap split">
     <div>
@@ -438,7 +392,6 @@ window.ADS_CONVERSION_APPEL = 'AW-18467990702/5T3ECMv-zJAdEK7ZnOZE';  /* « Appe
   </div>
 </section>
 
-<!-- ================= FAQ ================= -->
 <section class="section section-warm" id="faq">
   <div class="wrap split split-tight">
     <div class="faq-intro">
@@ -465,7 +418,6 @@ window.ADS_CONVERSION_APPEL = 'AW-18467990702/5T3ECMv-zJAdEK7ZnOZE';  /* « Appe
   </div>
 </section>
 
-<!-- ================= CTA FINAL ================= -->
 <section class="section final" id="contact">
   <div class="wrap final-in">
     <div class="final-copy">
@@ -491,7 +443,7 @@ window.ADS_CONVERSION_APPEL = 'AW-18467990702/5T3ECMv-zJAdEK7ZnOZE';  /* « Appe
         <p>Quatre champs, un rappel sous 48 h ouvrées.</p>
       </div>
       <form class="js-devis" id="devis-form-bas" novalidate>
-        <input type="hidden" name="access_key" value="REMPLACER_PAR_VOTRE_CLE_WEB3FORMS" />
+        <input type="hidden" name="access_key" value="" />
         <input type="checkbox" name="botcheck" tabindex="-1" autocomplete="off" style="display:none" aria-hidden="true" />
         <input type="hidden" name="gclid" /><input type="hidden" name="source" /><input type="hidden" name="campagne" /><input type="hidden" name="mot_cle" /><input type="hidden" name="page" />
 
@@ -530,9 +482,7 @@ window.ADS_CONVERSION_APPEL = 'AW-18467990702/5T3ECMv-zJAdEK7ZnOZE';  /* « Appe
       <p>Démoussage de toiture en ardoise, nettoyage sans haute pression, traitement anti-mousse et nettoyage de gouttières à Quimper, Concarneau, Douarnenez, Pont-l’Abbé, Fouesnant et 35 km alentour.</p>
       <p>Couverture en ardoise, réparation et recherche de fuite, démoussage, zinguerie, réfection de toiture.</p>
     </div>
-    <!-- ⚠️ MAQUETTE&nbsp;: le bloc légal (SIRET, assurance décennale, mentions légales,
-         données personnelles) doit être en place avant la première annonce.
-         Google Ads refuse les landings sans identification vérifiable. -->
+    
     <div class="footer-legal">
       <span>Démoussage · Traitement anti-mousse · Gouttières</span>
       <span>Quimper · Concarneau · Douarnenez · Pont-l’Abbé · Finistère (29)</span>
@@ -542,7 +492,6 @@ window.ADS_CONVERSION_APPEL = 'AW-18467990702/5T3ECMv-zJAdEK7ZnOZE';  /* « Appe
   </div>
 </footer>
 
-<!-- Barre d’action mobile -->
 <div class="callbar">
   <a href="tel:+33638594456" class="call js-tel"><svg viewBox="0 0 24 24" fill="none"><path d="M6.5 4h3l1.2 3.5-2 1.3a11 11 0 0 0 4.5 4.5l1.3-2 3.5 1.2v3a2 2 0 0 1-2.2 2A15.5 15.5 0 0 1 4.5 6.2 2 2 0 0 1 6.5 4Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>Appeler</a>
   <a href="#devis" class="quote">Devis gratuit</a>
