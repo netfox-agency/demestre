@@ -44,8 +44,10 @@ PHONE_TEL = "+33638594456"
 # qu'il est arbitré, puis relancer le build et redéployer.
 URL_BASE = "https://demestre.pages.dev"
 
-# Clé Web3Forms à créer avec l'adresse email de l'entreprise.
-WEB3FORMS_KEY = "REMPLACER_PAR_VOTRE_CLE_WEB3FORMS"
+# Clé Web3Forms, créée le 13/10/2026. C'est une clé PUBLIQUE, prévue pour le
+# code côté navigateur (Web3Forms le dit explicitement) : elle n'autorise que
+# l'envoi du formulaire vers la boîte configurée, rien d'autre.
+WEB3FORMS_KEY = "b92b25cc-d847-429a-a5ef-0ee66a0f4789"
 
 # Conversions Google Ads : tant qu'un identifiant contient XXXX, script.js
 # ignore l'envoi (aucune conversion fantôme pendant la recette).
