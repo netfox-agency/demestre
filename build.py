@@ -33,16 +33,16 @@ ROOT = pathlib.Path(__file__).parent
 PHONE_DISPLAY = "06 38 59 44 56"
 PHONE_TEL = "+33638594456"
 
-# Domaine de service, le temps que le domaine définitif soit tranché.
+# Domaine définitif, acheté et branché le 16/10/2026.
 # ⚠️ NE PAS remettre « demestre-couverture.fr » : vérifié au whois le
 # 09/10/2026, il appartient à un TIERS depuis janvier 2020 (Gandi) et rend
 # 404. Il avait été noté « libre » à tort. Un canonical et un og:url pointant
 # sur le domaine d'un inconnu, c'est le pire des deux mondes : Google voit un
 # duplicata d'une page morte, et les partages affichent une image absente.
-# Le site est en ligne ici, en envoi direct sur Cloudflare Pages (projet
-# « demestre », compte Netfox) ; à remplacer par le domaine de David dès
-# qu'il est arbitré, puis relancer le build et redéployer.
-URL_BASE = "https://demestre.pages.dev"
+# Servi par Cloudflare Pages (projet « demestre », compte Netfox).
+# demestre.pages.dev reste accessible : c'est l'adresse technique du projet,
+# le domaine est posé par-dessus.
+URL_BASE = "https://demestrecouverture.fr"
 
 # Clé Web3Forms, créée le 13/10/2026. C'est une clé PUBLIQUE, prévue pour le
 # code côté navigateur (Web3Forms le dit explicitement) : elle n'autorise que

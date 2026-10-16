@@ -21,3 +21,8 @@ README-INTERNE.md
 .DS_Store
 *.pyc
 __pycache__/
+
+# venv local de deploy.py, jamais versionne
+.venv-deploy/
+.lot.json
+.manifeste.json
